@@ -10,14 +10,30 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/posts" routerLinkActive="active">Posts</a>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorias
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/categories">Lista de categorias</a>
+            <a class="dropdown-item" routerLink="/category/create">Crear nueva categoria</a>
+          </div>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/signin" routerLinkActive="active">SignIn</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/signup" routerLinkActive="active">SignUp</a>
-        </li>
+        <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/signin" routerLinkActive="active">SignIn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/signup" routerLinkActive="active">SignUp</a>
+          </li>
+        </ng-container>
+        <ng-template #loggedIn>
+          <li class="nav-item">
+            <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">Logout</a>
+          </li>
+        </ng-template>
       </ul>
     </div>
   </div>

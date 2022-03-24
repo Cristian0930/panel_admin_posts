@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserRequest } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,7 +17,10 @@ export class SignupComponent implements OnInit {
     password_confirmation: ''
   }
 
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService, 
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +29,11 @@ export class SignupComponent implements OnInit {
     console.log(this.user);
     this.auth.signUp(this.user).subscribe(
       resp => {
+        console.log(resp);
+        localStorage.setItem('token', resp.token);
+        this.router.navigate(['/posts']);
       }, error => {
+        console.log(error);
       }
     )
   }

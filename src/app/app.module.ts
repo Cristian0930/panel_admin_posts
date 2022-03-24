@@ -8,7 +8,11 @@ import { PostsComponent } from './components/posts/posts.component';
 import { NavComponent } from './components/nav/nav.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CategoryFormComponent } from './components/category-form/category-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     SigninComponent,
     PostsComponent,
     NavComponent,
-    SigninComponent
+    SigninComponent,
+    CategoryListComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,14 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

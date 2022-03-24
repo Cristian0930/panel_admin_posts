@@ -1,0 +1,60 @@
+<h3>Listado de categorias</h3>
+<hr>
+
+<div class="row">
+  <div class="col text-right">
+    <button class="btn btn-primary" routerLink="/category/create">
+      <i class="fa fa-plus"></i>
+      Agregar
+    </button>
+  </div>
+</div>
+
+<div class="card mt-4" *ngIf="!cargando && categories.length > 0">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Fecha de creación</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <th scope="row">{{ category.id }}</th>
+          <td>{{ category.name }}</td>
+          <td>{{ category.created_at }}</td>
+          <td>
+            <button class="btn btn-info mr-3" [routerLink]="['/category/edit/', category.id]" data-toggle="tooltip" title="Editar">
+              <i class="fa fa-pen"></i>
+            </button>
+  
+            <button class="btn btn-danger" (click)="deleteCategory(category.id)" data-toggle="tooltip" title="Eliminar">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="!cargando && categories.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+  <h4 class="alert-heading">No hay registros</h4>
+  <p>
+    <i class="fa fa-exclamation fa-2x"></i>
+  </p>
+</div>
+
+<div *ngIf="cargando" 
+     class="alert alert-info text-center mt-3 animated fadeIn faster">
+  <h4 class="alert-heading">Cargando</h4>
+  <p>
+    <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+  </p>
+  <p class="mb-0">
+    Espere por favor
+  </p>
+</div>
