@@ -10,7 +10,7 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-  private url: string = 'http://127.0.0.1:8000/api/';
+  private url: string = 'http://whispering-wildwood-32923.herokuapp.com/api/';
 
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.url}posts`);

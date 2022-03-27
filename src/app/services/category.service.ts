@@ -8,7 +8,7 @@ import { Category, CategoryRequest } from '../interfaces/category';
 })
 export class CategoryService {
 
-  BASE_URL: string = 'http://127.0.0.1:8000/api/'
+  BASE_URL: string = 'http://whispering-wildwood-32923.herokuapp.com/api/'
 
   constructor(private http: HttpClient) { }
 

@@ -8,7 +8,7 @@ import { UserRequest, UserRequestLogin } from '../interfaces/user';
 })
 export class AuthService {
 
-  private url: string = 'http://127.0.0.1:8000/api/';
+  private url: string = 'http://whispering-wildwood-32923.herokuapp.com/api/';
 
   constructor(private _http: HttpClient, private router: Router) { }
 
