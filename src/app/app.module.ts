@@ -13,6 +13,7 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CategoryFormComponent } from './components/category-form/category-form.
     NavComponent,
     SigninComponent,
     CategoryListComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,

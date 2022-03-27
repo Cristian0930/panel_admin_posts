@@ -1,0 +1,53 @@
+<h3>Crear un nuevo post</h3>
+<hr>
+<button class="btn btn-danger" routerLink="/posts"><i class="fas fa-backspace"></i> Regresar</button>
+
+<ng-container *ngIf="!cargando && categories.length === 0; else form">
+    <div class="alert alert-warning mt-4" role="alert">
+        No existe ninguna categoria, crea primero una
+    </div>
+</ng-container>
+<ng-template #form>
+    <div class="row">
+        <div class="col-sm-4 offset-md-4">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <form (submit)="edit ? updatePost() : submitPost()">
+                        <div class="form-group">
+                            <input type="text" 
+                                name="title" 
+                                [(ngModel)]="post.title" 
+                                class="form-control" 
+                                placeholder="Titulo del post" 
+                                autofocus
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" 
+                                name="body" 
+                                [(ngModel)]="post.body" 
+                                class="form-control" 
+                                placeholder="Contenido del post"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" 
+                                name="url_image" 
+                                [(ngModel)]="post.url_image" 
+                                class="form-control" 
+                                placeholder="Contenido del post"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Category:</label>
+                            <select name="category_id" class="form-control" [(ngModel)]="post.category_id">
+                                <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

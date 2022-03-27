@@ -6,6 +6,6 @@ export interface Category {
 }
 
 export interface CategoryRequest {
-    id?: number;
+    id?:        number;
     name:       string;
 }
